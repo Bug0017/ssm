@@ -45,7 +45,8 @@ export default () => {
      });
 
     const onSubmit = ({ email, password }: any) => {
-      mutation.mutate({ email, password });
+      // mutation.mutate({ email, password });
+      navigate({ to: "/schools-management", replace: true });
     };
 
 

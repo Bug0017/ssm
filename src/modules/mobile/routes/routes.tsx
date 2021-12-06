@@ -1,12 +1,21 @@
 import Login from "../auth";
+import { SSMLandingPage } from "../schools-management/landing-page";
 // import ProtectedRoute from "./ProtectedRoute";
 
 const routes = [
   {
     path: "/",
-    element: <Login/>,
+    element: <Login />,
   },
- 
+  {
+    path: "/schools-management",
+    children:[
+      {
+        path:'/',
+        element: <SSMLandingPage/>
+      }
+    ]
+  },
 ];
 
 export default routes;
