@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Stack } from "@fluentui/react";
 import { Spinner, SpinnerSize } from "@fluentui/react/lib/Spinner";
-import myTheme from "../../../../theme";
 
 const Loading: React.FunctionComponent = () => {
   return (
@@ -17,7 +16,7 @@ const Loading: React.FunctionComponent = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: myTheme.palette.themePrimary,
+            backgroundColor: "rgb(50, 49, 48)",
             opacity: 0.8,
           },
         }}

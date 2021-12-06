@@ -8,10 +8,11 @@ import { useNavigate } from "react-location";
 import { useAuthSignInWithEmailAndPassword } from "@react-query-firebase/auth";
 import { useBoolean } from "@fluentui/react-hooks";
 import { useState } from "react"
-import { auth } from "../../../firebase"
+import { auth } from "../../../firebase";
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
+export default function Login() {
     
     const [showFBErrMsgBar, { toggle: toggleShowFBErrMsgBar }] =
       useBoolean(false);
@@ -39,14 +40,13 @@ export default () => {
          }
        },
        onSuccess(data) {
-         console.log(data);
+
          navigate({ to: "/schools-management", replace: true });
        },
      });
 
     const onSubmit = ({ email, password }: any) => {
-      // mutation.mutate({ email, password });
-      navigate({ to: "/schools-management", replace: true });
+      mutation.mutate({ email, password });
     };
 
 

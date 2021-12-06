@@ -5,7 +5,6 @@ import { Loading } from "../common/loading";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ({ children }:any) => {
   const user = useUserContext()
-  debugger;
   if (user?.data) {
     return children;
   }

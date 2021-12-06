@@ -1,20 +1,27 @@
 import { tw } from "twind"
 import myTheme from "../../../../../theme"
-import {  AcademicCapIcon, AdjustmentsIcon, AnnotationIcon, BeakerIcon, CalendarIcon, ClipboardCheckIcon, LibraryIcon, LockClosedIcon, MenuIcon, OfficeBuildingIcon, SpeakerphoneIcon, TruckIcon, UserAddIcon, UserGroupIcon } from "@heroicons/react/solid";
+import {  AcademicCapIcon, AdjustmentsIcon, AnnotationIcon, BeakerIcon, CalendarIcon, ClipboardCheckIcon, LibraryIcon, LockClosedIcon, MenuIcon, OfficeBuildingIcon, SpeakerphoneIcon, TruckIcon, UserAddIcon, UserGroupIcon } from "@heroicons/react/outline";
 import { Panel, Image, PrimaryButton } from "@fluentui/react";
 import { useBoolean } from "@fluentui/react-hooks";
 import logoImage from '../../../../../assets/logo.svg'
-import { Link } from "react-location";
+import { Link, useNavigate } from "react-location";
+import { auth } from "../../../../../firebase";
+import { useAuthSignOut, useAuthUser } from "@react-query-firebase/auth";
+
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ()=>{
 
 const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
   useBoolean(false);
+  const mutation = useAuthSignOut(auth);
+  const navigate = useNavigate();
+  const user = useAuthUser(["user"], auth);
 
     return (
       <div
         style={{ backgroundColor: myTheme.palette.themePrimary }}
-        className={tw`flex flex-row w-screen text-white-100 h-30 border-box p-2 justify-between`}
+        className={tw`flex flex-row w-screen  h-30 border-box p-2 justify-between`}
       >
         <MenuIcon className={tw`text-white w-9 h-9`} onClick={openPanel} />
 
@@ -29,8 +36,10 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
               src={logoImage}
               styles={{ root: { width: "150px", height: "150px" } }}
             />
-            <p className={tw`text-gray-700 -m-t-10`}>
-              dreamchaser6930@gmail.com
+            <p className={tw`text-gray-700 `}> 
+            {
+              user?.data?.email ? user.data.email : "dreamchaser6930@gmail.com"
+            }
             </p>
             <PrimaryButton text="View Profile" className={tw`rounded-full`} />
           </div>
@@ -114,6 +123,12 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
             </Link>
             <Link
               to=""
+              onClick={()=> {
+                mutation.mutate();
+                setTimeout(()=>{
+                  navigate({to:'/'});
+                },1000)
+              }}
               className={tw`flex flex-row space-x-8 text-gray-400 font-bold`}
             >
               <LockClosedIcon width={19} height={19} />
