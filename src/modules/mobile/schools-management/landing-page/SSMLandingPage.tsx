@@ -1,6 +1,6 @@
 import { tw } from "twind"
 import Layout from "../../common/layout"
-import {AdjustmentsIcon} from "@heroicons/react/outline";
+import {AdjustmentsIcon, DesktopComputerIcon, DocumentDuplicateIcon, LibraryIcon} from "@heroicons/react/outline";
 import { Link } from "react-location";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ()=>{
@@ -11,27 +11,27 @@ export default ()=>{
         >
           <Link
             to={"/schools-management/dashboard"}
-            className={tw`flex bg-red-200 w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
+            className={tw`flex bg-White shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
           >
             <AdjustmentsIcon width={20} height={20} /> <h3>Dashboard</h3>
           </Link>
           <Link
             to={"/schools-management/schools"}
-            className={tw`flex bg-red-200 w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
+            className={tw`flex bg-white shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
           >
-            <AdjustmentsIcon width={20} height={20} /> <h3>Schools</h3>
+            <LibraryIcon width={20} height={20} /> <h3>Schools</h3>
           </Link>
           <Link
             to={"/schools-management/classes"}
-            className={tw`flex bg-red-200 w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
+            className={tw`flex bg-white shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
           >
-            <AdjustmentsIcon width={20} height={20} /> <h3>Classes</h3>
+            <DesktopComputerIcon width={20} height={20} /> <h3>Classes</h3>
           </Link>{" "}
           <Link
             to={"/schools-management/sessions"}
-            className={tw`flex bg-red-200 w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
+            className={tw`flex bg-white  shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
           >
-            <AdjustmentsIcon width={20} height={20} /> <h3>Sessions</h3>
+            <DocumentDuplicateIcon width={20} height={20} /> <h3>Sessions</h3>
           </Link>
         </div>
       </Layout>

@@ -13,7 +13,7 @@ export default () => {
           text="Go Back"
           iconProps={{ iconName: "Back" }}
           onClick={() => navigate({ to: "/schools-management" })}
-          className={tw`w-32`}
+          className={tw`w-64`}
         />
         <h3>Dashboard</h3>
       </div>
