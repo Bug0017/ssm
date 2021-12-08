@@ -3,6 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { mergeStyles } from '@fluentui/react';
 
+
+import { setup } from "twind";
+
+setup({
+  theme: {
+    extend: {
+      ringWidth: {
+        DEFAULT: "0px",
+      },
+      ringOpacity: {
+        DEFAULT: "0",
+      },
+    },
+  },
+});
+
 // Inject some global styles
 mergeStyles({
   ':global(body,html,#root)': {

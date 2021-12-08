@@ -1,4 +1,4 @@
-import { DefaultButton, PrimaryButton } from "@fluentui/react";
+import { PrimaryButton } from "@fluentui/react";
 import { useNavigate } from "react-location";
 import { tw } from "twind";
 import Layout from "../../common/layout";
@@ -8,7 +8,9 @@ export default () => {
   const navigate = useNavigate();
   return (
     <Layout>
-      <div className={tw`mt-10 flex flex-col container mx-auto items-center space-y-5`}>
+      <div
+        className={tw`mt-10 flex flex-col container mx-auto items-center space-y-5`}
+      >
         <PrimaryButton
           text="Go Back"
           iconProps={{ iconName: "Back" }}
@@ -16,14 +18,7 @@ export default () => {
           className={tw`w-64`}
         />
 
-        <DefaultButton
-          text="Create school"
-          iconProps={{ iconName: "Add" }}
-          onClick={() => navigate({ to: "/schools-management/schools/create" })}
-          className={tw`w-64`}
-        />
-
-        <h3>Schools</h3>
+        <h3>Settings</h3>
       </div>
     </Layout>
   );

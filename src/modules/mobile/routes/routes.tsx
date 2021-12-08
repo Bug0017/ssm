@@ -1,9 +1,11 @@
 import Login from "../auth";
 import { SSMClasses } from "../schools-management/classes";
 import { SSMDashboard } from "../schools-management/dashboard";
+import { SSInquiries } from "../schools-management/inquiries";
 import { SSMLandingPage } from "../schools-management/landing-page";
-import { SSSchools } from "../schools-management/schools";
+import { SSSchoolCreate, SSSchools } from "../schools-management/schools";
 import { SSSessions } from "../schools-management/sessions";
+import { SSSettings } from "../schools-management/settings";
 import ProtectedRoute from "./ProtectedRoute";
 
 const routes = [
@@ -48,12 +50,41 @@ const routes = [
       },
       {
         path: "/schools",
+        children: [
+          {
+            path: "/",
+            element: (
+              <ProtectedRoute>
+                <SSSchools />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/create",
+            element: (
+              <ProtectedRoute>
+                <SSSchoolCreate />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+      {
+        path: "/inquiries",
         element: (
           <ProtectedRoute>
-            <SSSchools />
+            <SSInquiries />
           </ProtectedRoute>
         ),
-      }
+      },
+      {
+        path: "/settings",
+        element: (
+          <ProtectedRoute>
+            <SSSettings />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ];

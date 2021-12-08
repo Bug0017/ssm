@@ -1,6 +1,6 @@
 import { tw } from "twind"
 import myTheme from "../../../../../theme"
-import {  AcademicCapIcon, AdjustmentsIcon, AnnotationIcon, BeakerIcon, CalendarIcon, ClipboardCheckIcon, LibraryIcon, LockClosedIcon, MenuIcon, OfficeBuildingIcon, SpeakerphoneIcon, TruckIcon, UserAddIcon, UserGroupIcon } from "@heroicons/react/outline";
+import {  AcademicCapIcon, AnnotationIcon, BeakerIcon, CalendarIcon, ClipboardCheckIcon, LibraryIcon, LockClosedIcon, MenuIcon, OfficeBuildingIcon, SpeakerphoneIcon, TruckIcon, UserAddIcon, UserGroupIcon } from "@heroicons/react/outline";
 import { Panel, Image, PrimaryButton } from "@fluentui/react";
 import { useBoolean } from "@fluentui/react-hooks";
 import logoImage from '../../../../../assets/logo.svg'
@@ -23,8 +23,8 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
         style={{ backgroundColor: myTheme.palette.themePrimary }}
         className={tw`flex flex-row w-screen  h-30 border-box p-2 justify-between`}
       >
-        <MenuIcon className={tw`text-white w-9 h-9`} onClick={openPanel} />
-
+        <MenuIcon className={tw`text-white w-8 h-8`} onClick={openPanel} />
+        <h3 className={tw`text-white font-semibold`}>{user?.data?.displayName && user.data.displayName}</h3>
         <Panel
           isOpen={isOpen}
           onDismiss={dismissPanel}
@@ -44,13 +44,6 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
             <PrimaryButton text="View Profile" className={tw`rounded-full`} />
           </div>
           <div className={tw`flex flex-col justify-start mt-10 space-y-8 p-10`}>
-            <Link
-              to=""
-              className={tw`flex flex-row space-x-8 text-gray-400 font-bold`}
-            >
-              <AdjustmentsIcon width={19} height={19} />
-              <h3>Schools Management</h3>
-            </Link>
             <Link
               to=""
               className={tw`flex flex-row space-x-8 text-gray-400 font-bold`}
@@ -124,10 +117,15 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
             <Link
               to=""
               onClick={()=> {
-                mutation.mutate();
-                setTimeout(()=>{
+                try {
+                  mutation.mutate();
+                  
+                } catch (error) {
+                  console.log(error)
+                }finally{
                   navigate({to:'/'});
-                },1000)
+                }
+               
               }}
               className={tw`flex flex-row space-x-8 text-gray-400 font-bold`}
             >
@@ -142,7 +140,7 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
           ></div>
           <SpeakerphoneIcon className={tw`text-white w-9 h-9`} />
           <span
-            className={tw`absolute w-6 h-7 rounded-full bg-gray-900 text-white top-0 right-0 text-center`}
+            className={tw` flex absolute w-6 h-7 rounded-full bg-gray-900 text-white top-0 right-0  justify-center items-center`}
           >
             0
           </span>

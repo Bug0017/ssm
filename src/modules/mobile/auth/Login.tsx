@@ -9,6 +9,7 @@ import { useAuthSignInWithEmailAndPassword } from "@react-query-firebase/auth";
 import { useBoolean } from "@fluentui/react-hooks";
 import { useState } from "react"
 import { auth } from "../../../firebase";
+import { Loading } from "../common/loading"
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -16,6 +17,8 @@ export default function Login() {
     
     const [showFBErrMsgBar, { toggle: toggleShowFBErrMsgBar }] =
       useBoolean(false);
+
+    const [showLoading, {toggle:toggleLoading}] = useBoolean(false);
     const [firebaseError, setFirebaseError] = useState("");
     const {
       register, handleSubmit, formState: { errors },
@@ -26,6 +29,7 @@ export default function Login() {
 
      const mutation = useAuthSignInWithEmailAndPassword(auth, {
        onError(error) {
+         toggleLoading();
          toggleShowFBErrMsgBar();
          switch (error.code) {
            case "auth/user-not-found":
@@ -40,12 +44,15 @@ export default function Login() {
          }
        },
        onSuccess(data) {
-
+         toggleLoading();
+        console.log(data);  
          navigate({ to: "/schools-management", replace: true });
        },
      });
 
     const onSubmit = ({ email, password }: any) => {
+      
+      toggleLoading();
       mutation.mutate({ email, password });
     };
 
@@ -55,6 +62,7 @@ export default function Login() {
       <div
         className={tw`flex flex-col container mx-auto items-center space-y-0`}
       >
+        {showLoading && (<Loading/>)}
         <Image src={loginBGImage} className={tw`w-64 h-64`} />
         <Image src={logoImage} style={{ width: "190px", height: "180px" }} />
         <h1
