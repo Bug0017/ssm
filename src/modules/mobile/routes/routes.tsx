@@ -1,6 +1,7 @@
 import { useAuthUser } from "@react-query-firebase/auth";
 import { auth } from "../../../firebase";
 import Login from "../auth";
+import { Loading } from "../common/loading";
 import { SSMClasses } from "../schools-management/classes";
 import { SSMDashboard } from "../schools-management/dashboard";
 import { SSInquiries } from "../schools-management/inquiries";
@@ -12,9 +13,16 @@ import ProtectedRoute from "./ProtectedRoute";
 
 function Checker() {
   const user = useAuthUser(["user"], auth);;
-      if(user?.data){
-        return <SSMLandingPage />
-      }
+   
+
+        if (user?.isLoading) {
+          return <Loading />;
+        }
+
+         if (user?.data) {
+           return <SSMLandingPage />;
+         }
+
       return <Login />;
     }
 

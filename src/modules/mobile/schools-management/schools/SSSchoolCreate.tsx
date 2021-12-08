@@ -17,6 +17,7 @@ export default () => {
             onClick={() => navigate({ to: "/schools-management/schools" })}
             className={tw`w-64`}
           />
+          
         </div>
       </Layout>
     );
