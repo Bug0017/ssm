@@ -33,7 +33,8 @@ export default () => {
           onClick={() => navigate({ to: "/schools-management" })}
           className={tw`w-64`}
         />
-        <h3>Dashboard</h3>
+
+        <h3 className={tw`mt-7 text-2xl text-gray-400 font-bold`}>Dashboard</h3>
 
         <Calendar
           allFocusable

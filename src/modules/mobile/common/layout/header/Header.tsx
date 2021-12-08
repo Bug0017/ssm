@@ -45,7 +45,7 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
           </div>
           <div className={tw`flex flex-col justify-start mt-10 space-y-8 p-10`}>
             <Link
-              to=""
+              to="/schools-management"
               className={tw`flex flex-row space-x-8 text-gray-400 font-bold`}
             >
               <OfficeBuildingIcon width={19} height={19} />

@@ -7,13 +7,17 @@ export default () => {
 
     const navigate = useNavigate();
     return (
-        <Layout>
-            <PrimaryButton
-                text="Go Back"
-                iconProps={{iconName:'Back'}}
-                onClick={()=> navigate({to:'/schools-management/schools'})}
-                className={tw`w-64`}
-            />
-        </Layout>
-    )
+      <Layout>
+        <div
+          className={tw`mt-10 flex flex-col container mx-auto items-center space-y-5`}
+        >
+          <PrimaryButton
+            text="Go Back"
+            iconProps={{ iconName: "Back" }}
+            onClick={() => navigate({ to: "/schools-management/schools" })}
+            className={tw`w-64`}
+          />
+        </div>
+      </Layout>
+    );
 }
