@@ -29,7 +29,7 @@ export default () => {
             onClick={() => navigate({ to: "/schools-management/schools" })}
             className={tw`w-64`}
           />
-
+          <h1 className={tw`text-lg text-gray-500 font-bold`}>Create School</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
               label="School Name:"
