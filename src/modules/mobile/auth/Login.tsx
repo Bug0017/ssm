@@ -20,9 +20,7 @@ export default function Login() {
 
     const [showLoading, {toggle:toggleLoading}] = useBoolean(false);
     const [firebaseError, setFirebaseError] = useState("");
-    const {
-      register, handleSubmit, formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const navigate = useNavigate();
 

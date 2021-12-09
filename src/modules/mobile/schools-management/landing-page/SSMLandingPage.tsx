@@ -24,7 +24,7 @@ export default ()=>{
             to={"/schools-management/schools"}
             className={tw`flex bg-white shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-x-10`}
           >
-            <LibraryIcon width={20} height={20} /> <h3>Schools</h3>
+            <LibraryIcon width={20} height={20} /> <h3>School</h3>
           </Link>
           <Link
             to={"/schools-management/classes"}
