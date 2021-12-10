@@ -7,6 +7,7 @@
     "@fluentui/react-hooks": "^8.3.7",
     "@heroicons/react": "^1.0.5",
     "@react-query-firebase/auth": "^0.3.4",
+    "@react-query-firebase/firestore": "^0.4.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

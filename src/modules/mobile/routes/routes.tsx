@@ -6,7 +6,7 @@ import { SSMClasses } from "../schools-management/classes";
 import { SSMDashboard } from "../schools-management/dashboard";
 import { SSInquiries } from "../schools-management/inquiries";
 import { SSMLandingPage } from "../schools-management/landing-page";
-import { SSSchoolCreate, SSSchools } from "../schools-management/schools";
+import { SSSchoolCreate, SSSchoolEdit, SSSchools } from "../schools-management/schools";
 import { SSSessions } from "../schools-management/sessions";
 import { SSSettings } from "../schools-management/settings";
 import ProtectedRoute from "./ProtectedRoute";
@@ -29,7 +29,7 @@ function Checker() {
 const routes = [
   {
     path: "/",
-    element: <Checker/>
+    element: <Checker />,
   },
   {
     path: "/schools-management",
@@ -82,6 +82,14 @@ const routes = [
             element: (
               <ProtectedRoute>
                 <SSSchoolCreate />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: "/edit/:docID",
+            element: (
+              <ProtectedRoute>
+                <SSSchoolEdit />
               </ProtectedRoute>
             ),
           },

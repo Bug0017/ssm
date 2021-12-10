@@ -1,12 +1,27 @@
 import { PrimaryButton, TextField } from "@fluentui/react"
+import { useAuthUser } from "@react-query-firebase/auth";
+import { useFirestoreCollectionMutation,  } from "@react-query-firebase/firestore";
+import { collection} from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-location"
 import { tw } from "twind";
+import { auth, firestore } from "../../../../firebase";
 import Layout from "../../common/layout";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
 
     const navigate = useNavigate();
+
+
+    
+    const user = useAuthUser(["user"], auth);
+      
+
+    const createRef = collection(firestore, "schools");
+    const createMutation = useFirestoreCollectionMutation(createRef);
+    const userID = user?.data?.uid;
+
+   
     
     const {
       register,
@@ -15,7 +30,7 @@ export default () => {
     } = useForm();
 
     const onSubmit = (data:any)=>{
-      console.log(data)
+        createMutation.mutate({ ...data, userID});
     }
     
     return (
@@ -35,56 +50,56 @@ export default () => {
               label="School Name:"
               placeholder="SS Schools"
               {...register("schoolName", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.schoolName && "Required"}
               className={tw`w-64`}
             />
             <TextField
               label="Email:"
               placeholder="test@test.com"
               {...register("email", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.email && "Required"}
               className={tw`w-64`}
             />
             <TextField
               label="Address:"
               placeholder="No: 123, main street"
               {...register("address", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.address && "Required"}
               className={tw`w-64`}
             />
             <TextField
               label="City:"
               placeholder="Villupuram"
               {...register("city", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.city && "Required"}
               className={tw`w-64`}
             />
             <TextField
               label="State:"
               placeholder="TN"
               {...register("state", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.state && "Required"}
               className={tw`w-64`}
             />
             <TextField
               label="Country:"
               placeholder="IN"
               {...register("country", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.country && "Required"}
               className={tw`w-64`}
             />
             <TextField
               label="Fax:"
               placeholder=""
               {...register("fax", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.fax && "Required"}
               className={tw`w-64`}
             />
             <TextField
               label="Mobile No:"
               placeholder="8825549745"
               {...register("mobile", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.mobile && "Required"}
               className={tw`w-64`}
             />
             <TextField
@@ -92,11 +107,12 @@ export default () => {
               placeholder=""
               type="url"
               {...register("website", { required: true })}
-              errorMessage={errors.password && "Required"}
+              errorMessage={errors.website && "Required"}
               className={tw`w-64`}
             />
             <PrimaryButton
               text="Submit"
+              type="submit"
               iconProps={{ iconName: "Add" }}
               className={tw`w-64 mt-5`}
             />
