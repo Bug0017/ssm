@@ -7,6 +7,7 @@ import {
 import {ThemeProvider} from '@fluentui/react'
 import myTheme from './theme'
 import { MobileRoot } from './modules/mobile/root';
+import { WebRoot } from './modules/web/root';
 
 initializeIcons();
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,7 +15,9 @@ export default () => {
   return (
     <>
       <BrowserView>
-        <h1>This is rendered only in browser</h1>
+      <ThemeProvider theme={myTheme}>
+        <WebRoot/>
+      </ThemeProvider>
       </BrowserView>
       <MobileView>
         <ThemeProvider theme={myTheme}>
