@@ -46,42 +46,40 @@ export default () => {
             className={tw`w-64`}
           />
         ) : (
-          <DefaultButton
-            text="Edit"
-            iconProps={{ iconName: "Edit" }}
-            onClick={() =>
-              navigate({ to: `/schools-management/schools/edit/${documentID}` })
-            }
-            className={tw`w-64`}
-          />
+          <div>
+            <h1 className={tw`text-lg text-gray-500 font-bold`}>Schools</h1>
+            <div
+              className={tw`flex flex-col bg-White shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-y-2`}
+            >
+              <div className={tw`flex flex-row space-x-4`}>
+                <span className={tw`font-bold text-gray-600 text-xs`}>
+                  School Name:
+                </span>
+                <span className={tw`text-gray-500 text-xs`}>
+                  SS School adasda adasdasd
+                </span>
+              </div>
+
+              <div className={tw`flex flex-row space-x-10 mt-5`}>
+                <PencilIcon
+                  width={20}
+                  height={20}
+                  className={tw`text-gray-400 hover:text-red-800`}
+                  onClick={() =>
+                    navigate({
+                      to: `/schools-management/schools/edit/${documentID}`,
+                    })
+                  }
+                />
+                <TrashIcon
+                  width={20}
+                  height={20}
+                  className={tw`text-gray-400 hover:text-red-800`}
+                />
+              </div>
+            </div>
+          </div>
         )}
-
-        <h1 className={tw`text-lg text-gray-500 font-bold`}>Schools</h1>
-        <div
-          className={tw`flex flex-col bg-White shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-y-2`}
-        >
-          <div className={tw`flex flex-row space-x-4`}>
-            <span className={tw`font-bold text-gray-600 text-xs`}>
-              School Name:{" "}
-            </span>
-            <span className={tw`text-gray-500 text-xs`}>
-              SS School adasda adasdasd
-            </span>
-          </div>
-
-          <div className={tw`flex flex-row space-x-10 mt-5`}>
-            <PencilIcon
-              width={20}
-              height={20}
-              className={tw`text-gray-400 hover:text-red-800`}
-            />
-            <TrashIcon
-              width={20}
-              height={20}
-              className={tw`text-gray-400 hover:text-red-800`}
-            />
-          </div>
-        </div>
       </div>
     </Layout>
   );
