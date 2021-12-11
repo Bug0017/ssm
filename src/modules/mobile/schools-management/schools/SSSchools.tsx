@@ -7,6 +7,7 @@ import { useNavigate } from "react-location";
 import { tw } from "twind";
 import { auth, firestore } from "../../../../firebase";
 import Layout from "../../common/layout";
+import { Loading } from "../../common/loading";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -22,9 +23,13 @@ export default () => {
    );
 
    const fetchedQuery = useFirestoreQuery(["schools"], readRef);
-    debugger
-  const documentID = fetchedQuery.data?.docs[0].id;
   
+   const documentID = fetchedQuery.data?.docs[0].id;
+
+   if (fetchedQuery.isLoading){
+     return <Loading/>
+   }
+
   return (
     <Layout>
       <div
@@ -49,16 +54,96 @@ export default () => {
           <div>
             <h1 className={tw`text-lg text-gray-500 font-bold`}>Schools</h1>
             <div
-              className={tw`flex flex-col bg-White shadow-xl rounded-lg w-64 p-10 items-center text-gray-500 mt-10 space-y-2`}
+              className={tw`flex flex-col bg-white shadow-xl rounded-lg w-64 p-10 items-start text-gray-500 mt-10 space-y-2`}
             >
-              <div className={tw`flex flex-row space-x-4`}>
-                <span className={tw`font-bold text-gray-600 text-xs`}>
-                  School Name:
-                </span>
-                <span className={tw`text-gray-500 text-xs`}>
-                  SS School adasda adasdasd
-                </span>
-              </div>
+              {fetchedQuery.data?.docs.map((docSnapshot, i) => {
+                const data = docSnapshot.data();
+                debugger;
+                return (
+                  <>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        School Name:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.schoolName}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        Email:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.email}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        Address:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.address}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        City:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.city}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        Pin Code:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.pinCode}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        State:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.state}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        Country:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.country}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        Phone:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.mobile}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        Fax:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.fax}
+                      </span>
+                    </div>
+                    <div className={tw`flex flex-row space-x-4`}>
+                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                        Website:
+                      </span>
+                      <span className={tw`text-gray-500 text-xs`}>
+                        {data.website}
+                      </span>
+                    </div>
+                  </>
+                );
+              })}
 
               <div className={tw`flex flex-row space-x-10 mt-5`}>
                 <PencilIcon

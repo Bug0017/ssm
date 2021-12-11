@@ -75,6 +75,13 @@ export default () => {
               className={tw`w-64`}
             />
             <TextField
+              label="Pin Code:"
+              placeholder="605652"
+              {...register("pinCode", { required: true })}
+              errorMessage={errors.city && "Required"}
+              className={tw`w-64`}
+            />
+            <TextField
               label="State:"
               placeholder="TN"
               {...register("state", { required: true })}
