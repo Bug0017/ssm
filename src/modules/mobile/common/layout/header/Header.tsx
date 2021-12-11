@@ -21,7 +21,7 @@ const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] =
     return (
       <div
         style={{ backgroundColor: myTheme.palette.themePrimary }}
-        className={tw`flex flex-row w-screen  h-30 border-box p-2 justify-between`}
+        className={tw`flex flex-row w-screen  p-2 justify-between`}
       >
         <MenuIcon className={tw`text-white w-8 h-8`} onClick={openPanel} />
         <h3 className={tw`text-white font-semibold`}>{user?.data?.displayName && user.data.displayName}</h3>
