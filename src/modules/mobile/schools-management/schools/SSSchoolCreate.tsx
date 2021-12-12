@@ -31,6 +31,8 @@ export default () => {
 
     const onSubmit = (data:any)=>{
         createMutation.mutate({ ...data, userID});
+
+        navigate({to:"/schools-management/schools" , replace:true})
     }
     
     return (
@@ -98,7 +100,7 @@ export default () => {
             <TextField
               label="Fax:"
               placeholder=""
-              {...register("fax", { required: true })}
+              {...register("fax")}
               errorMessage={errors.fax && "Required"}
               className={tw`w-64`}
             />
@@ -113,7 +115,7 @@ export default () => {
               label="Website:"
               placeholder=""
               type="url"
-              {...register("website", { required: true })}
+              {...register("website"    )}
               errorMessage={errors.website && "Required"}
               className={tw`w-64`}
             />

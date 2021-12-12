@@ -1,10 +1,13 @@
+import React from "react";
 import { DefaultButton, PrimaryButton } from "@fluentui/react";
-import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
+import { PencilIcon } from "@heroicons/react/outline";
 import { useAuthUser } from "@react-query-firebase/auth";
-import { useFirestoreQuery } from "@react-query-firebase/firestore";
+import {
+  useFirestoreQuery
+} from "@react-query-firebase/firestore";
 import { collection, limit, query, where } from "firebase/firestore";
 import { useNavigate } from "react-location";
-import { tw } from "twind";
+import { tw, apply } from "twind";
 import { auth, firestore } from "../../../../firebase";
 import Layout from "../../common/layout";
 import { Loading } from "../../common/loading";
@@ -22,9 +25,10 @@ export default () => {
      where("userID", "==", userID)
    );
 
-   const fetchedQuery = useFirestoreQuery(["schools"], readRef);
+    const fetchedQuery = useFirestoreQuery(["schools"], readRef);
+
+        const documentID = fetchedQuery.data?.docs[0]?.id;
   
-   const documentID = fetchedQuery.data?.docs[0].id;
 
    if (fetchedQuery.isLoading){
      return <Loading/>
@@ -58,90 +62,61 @@ export default () => {
             >
               {fetchedQuery.data?.docs.map((docSnapshot, i) => {
                 const data = docSnapshot.data();
-                debugger;
                 return (
-                  <>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
+                  <React.Fragment key={i}>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>
                         School Name:
                       </span>
-                      <span className={tw`text-gray-500 text-xs`}>
+                      <span className={tw`${cardItemBody}`}>
                         {data.schoolName}
                       </span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        Email:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
-                        {data.email}
-                      </span>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>Email:</span>
+                      <span className={tw`${cardItemBody}`}>{data.email}</span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        Address:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>Address:</span>
+                      <span className={tw`${cardItemBody}`}>
                         {data.address}
                       </span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        City:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
-                        {data.city}
-                      </span>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>City:</span>
+                      <span className={tw`${cardItemBody}`}>{data.city}</span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        Pin Code:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>Pin Code:</span>
+                      <span className={tw`${cardItemBody}`}>
                         {data.pinCode}
                       </span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        State:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
-                        {data.state}
-                      </span>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>State:</span>
+                      <span className={tw`${cardItemBody}`}>{data.state}</span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        Country:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>Country:</span>
+                      <span className={tw`${cardItemBody}`}>
                         {data.country}
                       </span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        Phone:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
-                        {data.mobile}
-                      </span>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>Phone:</span>
+                      <span className={tw`${cardItemBody}`}>{data.mobile}</span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        Fax:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
-                        {data.fax}
-                      </span>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>Fax:</span>
+                      <span className={tw`${cardItemBody}`}>{data.fax}</span>
                     </div>
-                    <div className={tw`flex flex-row space-x-4`}>
-                      <span className={tw`font-bold text-gray-600 text-xs`}>
-                        Website:
-                      </span>
-                      <span className={tw`text-gray-500 text-xs`}>
+                    <div className={tw`${cardItem}`}>
+                      <span className={tw`${cardItemHeader}`}>Website:</span>
+                      <span className={tw`${cardItemBody}`}>
                         {data.website}
                       </span>
                     </div>
-                  </>
+                  </React.Fragment>
                 );
               })}
 
@@ -156,11 +131,6 @@ export default () => {
                     })
                   }
                 />
-                <TrashIcon
-                  width={20}
-                  height={20}
-                  className={tw`text-gray-400 hover:text-red-800`}
-                />
               </div>
             </div>
           </div>
@@ -169,3 +139,8 @@ export default () => {
     </Layout>
   );
 };
+
+
+const cardItem = apply`flex flex-row space-x-4`;
+const cardItemHeader = apply`font-bold text-gray-600 text-xs`;
+const cardItemBody = apply`text-gray-500 text-xs`;

@@ -1963,6 +1963,13 @@
     "@types/yargs" "^16.0.0"
     "chalk" "^4.0.0"
 
+"@lottiefiles/react-lottie-player@^3.4.1":
+  "integrity" "sha512-HKhclI0dScyaJHPEKSyMaC7J8ZaTvVKy3f7Ru6h+Ygavvr4Zy7Jyd/YK+jYtulKIsxQC/gF6qGmWcsp65zYx+w=="
+  "resolved" "https://registry.npmjs.org/@lottiefiles/react-lottie-player/-/react-lottie-player-3.4.1.tgz"
+  "version" "3.4.1"
+  dependencies:
+    "lottie-web" "^5.7.8"
+
 "@microsoft/load-themed-styles@^1.10.26":
   "integrity" "sha512-OSCpMTh1YmGpToiNbJv9lW95iZPebZEOafV/3bSefesAvYBUAJiJvhzO3l43hUD8MGiBc55JuVAjvIzqzg4eFg=="
   "resolved" "https://registry.npmjs.org/@microsoft/load-themed-styles/-/load-themed-styles-1.10.233.tgz"
@@ -7951,6 +7958,11 @@
   "version" "1.4.0"
   dependencies:
     "js-tokens" "^3.0.0 || ^4.0.0"
+
+"lottie-web@^5.7.8":
+  "integrity" "sha512-9gIizWADlaHC2GCt+D+yNpk5l2clZQFqnVWWIVdY0LnxC/uLa39dYltAe3fcmC/hrZ2IUQ8dLlY0O934Npjs7Q=="
+  "resolved" "https://registry.npmjs.org/lottie-web/-/lottie-web-5.8.1.tgz"
+  "version" "5.8.1"
 
 "lower-case@^2.0.2":
   "integrity" "sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg=="

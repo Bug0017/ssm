@@ -5,11 +5,12 @@ import { tw } from "twind";
 import Layout from "../../common/layout";
 
 
-import { useFirestoreDocument } from "@react-query-firebase/firestore";
+import { useFirestoreDocument, useFirestoreDocumentMutation } from "@react-query-firebase/firestore";
 import {
+  collection,
   doc,
 } from "firebase/firestore";
-import { firestore } from "../../../../firebase";
+import { auth, firestore } from "../../../../firebase";
 import { Loading } from "../../common/loading";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -24,6 +25,13 @@ export default () => {
     const school = useFirestoreDocument(["schools", docID], ref);
 
     const snapshotData = school.data?.data();
+
+    const editCollection = collection(firestore,"schools");
+    const editRef = doc(editCollection, docID);
+    const mutation = useFirestoreDocumentMutation(editRef);
+
+    const userID = auth.currentUser?.uid;
+
   debugger;
   const {
     register,
@@ -33,6 +41,8 @@ export default () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
+    mutation.mutate({...data,userID})
+    navigate({to:"/schools-management/schools", replace:true})
   };
 
   if (school.isLoading){
@@ -111,7 +121,7 @@ export default () => {
             <TextField
               label="Fax:"
               placeholder=""
-              {...register("fax", { required: true })}
+              {...register("fax")}
               errorMessage={errors.password && "Required"}
               className={tw`w-64`}
               defaultValue={snapshotData?.fax}
@@ -128,7 +138,7 @@ export default () => {
               label="Website:"
               placeholder=""
               type="url"
-              {...register("website", { required: true })}
+              {...register("website")}
               errorMessage={errors.password && "Required"}
               className={tw`w-64`}
               defaultValue={snapshotData?.website}
@@ -137,6 +147,7 @@ export default () => {
               text="Update"
               iconProps={{ iconName: "Update" }}
               className={tw`w-64 mt-5`}
+              type="submit"
             />
           </form>
         </div>

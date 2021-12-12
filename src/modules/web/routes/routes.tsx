@@ -1,7 +1,7 @@
 import { useAuthUser } from "@react-query-firebase/auth";
 import { auth } from "../../../firebase";
 import { Login } from "../auth/login";
-import { Loading } from "../common/loading";
+import {  Loading, MonkeyLoading } from "../common/loading";
 import { SSMWebLandingPage } from "../school-management/landing-page";
 
 
@@ -21,6 +21,10 @@ function Checker() {
 
 
 const routes = [
+  {
+    path: "*",
+    element: <MonkeyLoading />,
+  },
   {
     path: "/",
     element: <Checker />,
